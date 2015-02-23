@@ -1,5 +1,6 @@
 package HomeTask18;
 
+import java.util.*;
 import java.util.Random;
 
 public class PersonSerializator {
@@ -14,12 +15,12 @@ public class PersonSerializator {
 	public Person generateRandomPerson(){
 		return new Person(createRandomName(), createRandomName(), new Random().nextInt(100));
 	}
-	public Person[] generateListOfPerson(int childrenQuantity){
-		Person [] personList = new Person[childrenQuantity];
+	public List<Person> generateListOfChildren(int childrenQuantity){
+		List<Person> childrenList = new ArrayList<Person>();
 		for (int i = 0; i < childrenQuantity; i ++){
-			personList[i] = generateRandomPerson();
+			childrenList.add(generateRandomPerson());
 		}
-		return personList;
+		return childrenList;
 	}
 	public String serializePerson(Person person){
 		StringBuilder result = new StringBuilder();
@@ -27,14 +28,30 @@ public class PersonSerializator {
 		if (person.getChildren()!=null){
 			result.append("<person><name>"+person.getName()+"</name><lastname>"+person.getLastName()+"</lastname><age>"+person.getAge()+"</age>");
 			result.append("<children>");
-			for (int i = 0; i < person.getChildren().length; i ++){
-			   result.append("<person><name>"+person.getChildren()[i].getName()+"</name><lastname>"+person.getChildren()[i].getLastName()+"</lastname><age>"+person.getChildren()[i].getAge()+"</age></person>");
+			for (int i = 0; i < person.getChildren().size(); i ++){
+			   result.append("<person><name>"+person.getChildren().get(i).getName()+"</name><lastname>"+person.getChildren().get(i).getLastName()+"</lastname><age>"+person.getChildren().get(i).getAge()+"</age></person>");
 			} 
 			result.append("</children></person>");
 			
 		}
 		else{
 		   result.append("<person><name>"+person.getName()+"</name><lastname>"+person.getLastName()+"</lastname><age>"+person.getAge()+"</age></person>");
+		}
+		return result.toString();
+	}
+	public String serializePersonWithUpperCase(Person person){
+		StringBuilder result = new StringBuilder();
+		if (person.getChildren()!=null){
+			result.append("<person><name>"+person.getName().toUpperCase()+"</name><lastname>"+person.getLastName()+"</lastname><age>"+person.getAge()+"</age>");
+			result.append("<children>");
+			for (int i = 0; i < person.getChildren().size(); i ++){
+			   result.append("<person><name>"+person.getChildren().get(i).getName().toUpperCase()+"</name><lastname>"+person.getChildren().get(i).getLastName()+"</lastname><age>"+person.getChildren().get(i).getAge()+"</age></person>");
+			} 
+			result.append("</children></person>");
+			
+		}
+		else{
+		   result.append("<person><name>"+person.getName().toUpperCase()+"</name><lastname>"+person.getLastName()+"</lastname><age>"+person.getAge()+"</age></person>");
 		}
 		return result.toString();
 	}

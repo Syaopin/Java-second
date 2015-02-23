@@ -1,12 +1,12 @@
 package HomeTask18;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Person {
 private String name;
 private String lastName;
 private int age;
-private Person[] children;
+private List<Person> children;
 
 public Person(String name, String lastName, int age){
 	this.name = name;
@@ -14,18 +14,18 @@ public Person(String name, String lastName, int age){
 	this.age = age;
 }
 
-public Person[] getChildren() {
+public List<Person> getChildren() {
 	return children;
 }
 
-public void setChildren(Person[] children) {
+public void setChildren(List<Person> children) {
 	this.children = children;
 }
 
 @Override
 public String toString() {
 	return "Person [name=" + name + ", lastName=" + lastName + ", age=" + age
-			+ ", children=" + Arrays.toString(children) + "]";
+			+ ", children=" + children + "]";
 }
 
 public String getName() {
